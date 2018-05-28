@@ -30,21 +30,36 @@ $(document).ready(function(){
   }
 
 //Get the values of all the select column drop down menus
+// function getSelVal(){
+//   var arr;
+//   arr = $('select.select-class').map(function(){
+//     return this.value;
+//   });
+// }
+
+// function getSelVal(){
+//   var arr = [];
+//    $('.select-class option:selected').each(function(){
+//    return this.value;
+//   });
+// }
+
  function getSelVal(){
    var id, selVal;
    $(".filter-row").each(function(n){
-     id = $(this).find("#select-filter").prop("id");
-     selVal = $("#" + id + " :selected").val();
+     id = $(this).find("select").attr("id");
+     if(id){
+     selVal = $("#" + id + ":selected").val();
      return selVal;
+    }
    });
  }
-
+//
 function getCompVal(){
   var id, compVal;
   $(".filter-row").each(function(m){
-    id = $(this).find("#comparison").prop("id");
-    // compVal = $("#" + id = " :selected").val();
-    compVal = id.val();
+    id = $(this).find("select")[1].attr("id");
+    compVal = $("#" + id + " :selected").val();
     return compVal;
   });
 }
@@ -69,6 +84,8 @@ function getCompVal(){
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
+    alert('changeCompFilter firing');
+    alert(getSelVal());
       if(getSelVal() == "Date Submitted"){
        // col.options[col.options.length]=new Option("On", "on");
        $("#comparison").append('<option value="on">On</option>');
@@ -115,6 +132,7 @@ function getCompVal(){
   }
 
   function filter(){
+    alert('filter is firing');
     var table, input, firstRow, header, i, j, k, numCells, numRows, tr, td;
 
    //Select the table
@@ -230,7 +248,7 @@ function getCompVal(){
  //   }
  // }
 
- $("#filter").on("load", getModal);
+ $("#filter").on("click", getModal);
  getModal();
   $("#select-filter").on("change", changeCompFilter);
   changeCompFilter();
