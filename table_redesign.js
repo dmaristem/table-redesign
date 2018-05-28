@@ -29,6 +29,25 @@ $(document).ready(function(){
     }
   }
 
+//Get the values of all the select column drop down menus
+ function getSelVal(){
+   var id, selVal;
+   $(".filter-row").each(function(n){
+     id = $(this).find("#select-filter").prop("id");
+     selVal = $("#" + id + " :selected").val();
+     return selVal;
+   });
+ }
+
+function getCompVal(){
+  var id, compVal;
+  $(".filter-row").each(function(m){
+    id = $(this).find("#comparison").prop("id");
+    // compVal = $("#" + id = " :selected").val();
+    compVal = id.val();
+    return compVal;
+  });
+}
   //Get the value of the selected filter column option
   function getSel(){
     var f, selectedInp;
@@ -50,7 +69,7 @@ $(document).ready(function(){
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
-      if(getSel() == "Date Submitted"){
+      if(getSelVal() == "Date Submitted"){
        // col.options[col.options.length]=new Option("On", "on");
        $("#comparison").append('<option value="on">On</option>');
        $("#comparison").append('<option value="after">After</option>');
@@ -66,7 +85,7 @@ $(document).ready(function(){
        // $("#comparison").remove('<option value="before">Before</option>');
        // $("#comparison").remove('<option value="between">Between</option>');
      }
-     if(getSel() == "Team Name" || getSel() == "Problem Statement"){
+     if(getSelVal() == "Team Name" || getSelVal() == "Problem Statement"){
        $("#comparison").append('<option value="matches">Matches</option>');
        $("#comparison").append('<option value="contains">Contains</option>');
        $("#comparison").append('<option value="starts-with">Starts with</option>');
@@ -75,7 +94,7 @@ $(document).ready(function(){
        $("#comparison option[value='contains']").remove();
        $("#comparison option[value='starts-with']").remove();
      }
-     if(getSel() == "Status"){
+     if(getSelVal() == "Status"){
        $("#comparison").append('<option value="pending">Pending</option>');
        $("#comparison").append('<option value="accepted">Accepted</option>');
        $("#comparison").append('<option value="rejected">Rejected</option>');
@@ -84,7 +103,7 @@ $(document).ready(function(){
        $("#comparison option[value='accepted']").remove();
        $("#comparison option[value='rejected']").remove();
      }
-     if(getSel() == "Size"){
+     if(getSelVal() == "Size"){
        $("#comparison").append('<option value="equals">Equals</option>');
        $("#comparison").append('<option value="greater-than">Greater than</option>');
        $("#comparison").append('<option value="less-than">Less than</option>');
@@ -124,7 +143,7 @@ $(document).ready(function(){
     for(i=0; i<numCells; i++){
       // console.log(header[i].innerHTML); //log the text in cell
        //If the selected option matches the header name
-       if(getSel() == header[i].textContent){
+       if(getSelVal() == header[i].textContent){
 
         //numRows - 1 because we're not counting the footer row
          for(j=1; j<=numRows-1; j++){
@@ -135,55 +154,55 @@ $(document).ready(function(){
 
 
              //Comparison options
-             if(getComp() == "equals" || getComp() == "matches"){
+             if(getCompVal() == "equals" || getCompVal() == "matches"){
                if (td.textContent == input){
                tr.style.display = "";
               } else{
                 tr.style.display = "none";
               }
-            }else if(getComp() == "greater-than"){
+            }else if(getCompVal() == "greater-than"){
               if (td.textContent > input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "less-than"){
+           }else if(getCompVal() == "less-than"){
               if (td.textContent < input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "Not equal to"){
+           }else if(getCompVal() == "Not equal to"){
               if (td.textContent !== input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "pending"){
+           }else if(getCompVal() == "pending"){
              if(td.textContent == "Pending"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "accepted"){
+           }else if(getCompVal() == "accepted"){
              if(td.textContent == "Accepted"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "rejected"){
+           }else if(getCompVal() == "rejected"){
              if(td.textContent == "Rejected"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "contains"){
+           }else if(getCompVal() == "contains"){
              if(td.textContent.includes(input)){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getComp() == "starts-with"){
+           }else if(getCompVal() == "starts-with"){
              if(td.textContent.startsWith(input[0])){
                tr.style.display = "";
              }else{
@@ -217,6 +236,10 @@ $(document).ready(function(){
   changeCompFilter();
   $('#submit-filter').on("click", filter);
   filter();
+  // $('#select-filter').on("change", getSelVal);
+  // getSelVal();
+  // $('#select-filter').on("change", getCompVal);
+  // getCompVal();
   // $("#select-filter").on("change", hideInputTextbox);
   // hideInputTextbox();
 
