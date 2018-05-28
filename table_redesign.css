@@ -202,7 +202,7 @@ thead{
 
 .filter-row{
   display: grid;
-  grid-template-columns: auto 70px auto;
+  grid-template-columns: auto 20% auto;
   grid-gap: 30px 25px;
   justify-content: center;
   /* flex-direction: column; */

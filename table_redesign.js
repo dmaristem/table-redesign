@@ -50,7 +50,6 @@ $(document).ready(function(){
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
-    var col = document.getElementById("select-filter");
       if(getSel() == "Date Submitted"){
        // col.options[col.options.length]=new Option("On", "on");
        $("#comparison").append('<option value="on">On</option>');
