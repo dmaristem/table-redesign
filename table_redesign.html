@@ -403,7 +403,7 @@
 
             <div class="filter-col">
                 <!--One filter set   SAME IDs REMEMBER TO CHANGE-->
-                <!-- <div class="filter-row"> -->
+                <div class="filter-row">
                   <select id="select-filter" class="grid-item">
                     <option id="date-sub">Date Submitted</option>
                     <option id="team-name">Team Name</option>
@@ -418,21 +418,21 @@
                   </select>
 
                   <div class="grid-item"><input type="text" placholder="Value" id="user-input"></div>
-              <!-- </div> -->
+              </div>
                <!-- end of first filter-row -->
 
               <!-- Second filter set-->
-               <!-- <div class="filter-row"> -->
-                <!-- <select id="select-filter" class="grid-item">
+               <div class="filter-row">
+                <select id="select-filter-2" class="grid-item">
                   <option>Date Submitted</option>
                   <option>Team Name</option>
                   <option>Status</option>
                   <option>Cohort</option>
                   <option>Problem Statement</option>
-                  <option id="team-size">Size</option>
+                  <option>Size</option>
                 </select>
 
-                <select id="comparison" class="grid-item">
+                <select id="comparison-2" class="grid-item">
                   <option> Equal to</option>
                   <option> Greater than </option>
                   <option> Less than </option>
@@ -440,22 +440,21 @@
                   <option> Not equal to </option>
                 </select>
 
-               <div id="user-input" class="grid-item"><input type="text" placholder="Value"></div> -->
-             <!-- </div>  -->
-             <!-- end of second filter-row -->
+               <div id="user-input-2" class="grid-item"><input type="text" placholder="Value"></div>
+             </div><!-- end of second filter-row -->
 
             <!-- Third filter set-->
-            <!-- <div class="filter-row"> -->
-              <!-- <select id="select-filter" class="grid-item">
+            <div class="filter-row">
+              <select id="select-filter-3" class="grid-item">
                 <option>Date Submitted</option>
                 <option>Team Name</option>
                 <option>Status</option>
                 <option>Cohort</option>
                 <option>Problem Statement</option>
-                <option id="team-size">Size</option>
+                <option>Size</option>
               </select>
 
-              <select id="comparison" class="grid-item">
+              <select id="comparison-3" class="grid-item">
                 <option> Equal to</option>
                 <option> Greater than </option>
                 <option> Less than </option>
@@ -463,23 +462,27 @@
                 <option> Not equal to </option>
               </select>
 
-             <div id="user-input" class="grid-item"><input type="text" placholder="Value"></div> -->
+             <div id="user-input-3" class="grid-item"><input type="text" placholder="Value"></div>
+
+                  <button id="add-filter" class="grid-item"> Add filter</button>
+                  <!-- <button id="submit-filter" onclick="filter()">Search</button> -->
+                  <button id="submit-filter" class="grid-item">Search</button>
+
+           </div>
+
+
+            <!-- <div class="filter-row"> -->
+                 <!-- <button id="add-filter" class="grid-item"> Add filter</button> -->
+                 <!-- <button id="submit-filter" onclick="filter()">Search</button> -->
+                 <!-- <button id="submit-filter" class="grid-item">Search</button> -->
            <!-- </div> -->
 
-
-            <div class="grid-item">
-                 <button id="add-filter" onclick="addFilter()"> Add filter</button>
-                 <!-- <button id="submit-filter" onclick="filter()">Search</button> -->
-                 <button id="submit-filter">Search</button>
-           </div>
-         </div>
-       <!-- </div>  -->
-       <!-- end of filter-col -->
+       </div><!-- end of filter-col -->
 
 
 
-    </div>
-  </div>
+    </div><!-- end of f-modal-content-->
+  </div><!-- end of f-modal-->
 
 
 
