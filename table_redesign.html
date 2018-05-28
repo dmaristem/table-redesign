@@ -404,7 +404,7 @@
             <div class="filter-col">
                 <!--One filter set   SAME IDs REMEMBER TO CHANGE-->
                 <div class="filter-row">
-                  <select id="select-filter" class="grid-item">
+                  <select id="select-filter" class="grid-item select-class">
                     <option id="date-sub">Date Submitted</option>
                     <option id="team-name">Team Name</option>
                     <option id="status">Status</option>
@@ -413,17 +413,17 @@
                     <option id="team-size">Size</option>
                   </select>
 
-                  <select id="comparison" class="grid-item">
+                  <select id="comparison" class="grid-item comparison-class">
 
                   </select>
 
-                  <div class="grid-item"><input type="text" placholder="Value" id="user-input"></div>
+                  <div class="grid-item"><input type="text" placholder="Value" id="user-input" class="input-class"></div>
               </div>
                <!-- end of first filter-row -->
 
               <!-- Second filter set-->
                <div class="filter-row">
-                <select id="select-filter-2" class="grid-item">
+                <select id="select-filter-2" class="grid-item select-class">
                   <option>Date Submitted</option>
                   <option>Team Name</option>
                   <option>Status</option>
@@ -432,7 +432,7 @@
                   <option>Size</option>
                 </select>
 
-                <select id="comparison-2" class="grid-item">
+                <select id="comparison-2" class="grid-item comparison-class">
                   <option> Equal to</option>
                   <option> Greater than </option>
                   <option> Less than </option>
@@ -440,12 +440,12 @@
                   <option> Not equal to </option>
                 </select>
 
-               <div id="user-input-2" class="grid-item"><input type="text" placholder="Value"></div>
+               <div class="grid-item"><input type="text" placholder="Value" id="user-input-2" class="input-class"></div>
              </div><!-- end of second filter-row -->
 
             <!-- Third filter set-->
             <div class="filter-row">
-              <select id="select-filter-3" class="grid-item">
+              <select id="select-filter-3" class="grid-item select-class">
                 <option>Date Submitted</option>
                 <option>Team Name</option>
                 <option>Status</option>
@@ -454,7 +454,7 @@
                 <option>Size</option>
               </select>
 
-              <select id="comparison-3" class="grid-item">
+              <select id="comparison-3" class="grid-item comparison-class">
                 <option> Equal to</option>
                 <option> Greater than </option>
                 <option> Less than </option>
@@ -462,7 +462,7 @@
                 <option> Not equal to </option>
               </select>
 
-             <div id="user-input-3" class="grid-item"><input type="text" placholder="Value"></div>
+             <div class="grid-item"><input type="text" placholder="Value" id="user-input-3" class="input-class"></div>
 
                   <button id="add-filter" class="grid-item"> Add filter</button>
                   <!-- <button id="submit-filter" onclick="filter()">Search</button> -->
