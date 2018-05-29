@@ -44,91 +44,146 @@ $(document).ready(function(){
 //   });
 // }
 
- function getSelVal(){
-   var id, selVal;
-   $(".filter-row").each(function(n){
-     id = $(this).find("select").attr("id");
-     if(id){
-     selVal = $("#" + id + ":selected").val();
-     return selVal;
-    }
-   });
- }
+//Get the id of the select form
+// function getId(){
+//   var id;
+//   $(".select-class").each(function(n){
+//   id = $(this).attr("id");
+//   return id;
+// });
+// }
+
 //
-function getCompVal(){
-  var id, compVal;
-  $(".filter-row").each(function(m){
-    id = $(this).find("select")[1].attr("id");
-    compVal = $("#" + id + " :selected").val();
-    return compVal;
-  });
-}
+// function getCompVal(){
+//   var id, compVal;
+//   $(".filter-row").each(function(m){
+//     id = $(this).find("select")[1].attr("id");
+//     compVal = $("#" + id + " :selected").val();
+//     return compVal;
+//   });
+// }
+
+//use getElementsByClassName to get the value of the selected option in the column drop-down
+// function useClass(){
+//   var c, selected;
+//   c = document.getElementsByClassName("select-class");
+//   console.log(c);
+//   selected = c.options[selected.selectedIndex].value;
+//   return selected;
+// }
+// useClass();
+
+
+//Functioning ones
   //Get the value of the selected filter column option
-  function getSel(){
-    var f, selectedInp;
-    //Select the select drop-down menu
-    f = document.getElementById("select-filter");
-     //Get the option that was selected in the drop-down menu
-    selectedInp = f.options[f.selectedIndex].value;
-    return selectedInp;
-  }
+  // function getSel(){
+  //   var f, selectedInp;
+  //   //Select the select drop-down menu
+  //   f = document.getElementById("select-filter");
+  //    //Get the option that was selected in the drop-down menu
+  //   selectedInp = f.options[f.selectedIndex].value;
+  //   return selectedInp;
+  // }
 
   //Get the value of the comparison filter select option
-  function getComp(){
-    var c, comp;
-    c = document.getElementById("comparison");
-    comp = c.options[c.selectedIndex].value;
-    return comp;
-  }
+  // function getComp(){
+  //   var c, comp;
+  //   c = document.getElementById("comparison");
+  //   comp = c.options[c.selectedIndex].value;
+  //   return comp;
+  // }
+
+
 
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
     alert('changeCompFilter firing');
-    alert(getSelVal());
-      if(getSelVal() == "Date Submitted"){
-       // col.options[col.options.length]=new Option("On", "on");
-       $("#comparison").append('<option value="on">On</option>');
-       $("#comparison").append('<option value="after">After</option>');
-       $("#comparison").append('<option value="before">Before</option>');
-       $("#comparison").append('<option value="between">Between</option>');
-     }else{
-       $("#comparison option[value='on']").remove();
-       $("#comparison option[value='after']").remove();
-       $("#comparison option[value='before']").remove();
-       $("#comparison option[value='between']").remove();
-       // $("#comparison").remove('<option value="on">On</option>');
-       // $("#comparison").remove('<option value="after">After</option>');
-       // $("#comparison").remove('<option value="before">Before</option>');
-       // $("#comparison").remove('<option value="between">Between</option>');
+    var selArr = [];
+    var cArr = [];
+    var i, id, f, cid, selVal, opLen;
+    //get selected value of first select forms
+    $(".select-class").each(function(n){
+    id = $(this).attr("id").toString();
+      f = document.getElementById(id);
+      selVal = f.options[f.selectedIndex].value;
+      selArr.push(selVal);
+    });
+    console.log("This is the selected array: " + selArr);
+
+    //get id of second select forms
+    $(".comparison-class").each(function(m){
+      cid = $(this).attr("id").toString();
+      cArr.push(cid);
+    });
+    console.log("This is the comparison id array: " + cArr);
+
+
+
+    for(i = 0; i < selArr.length; i++){
+      //length of comparison select form (number of option elements)
+      opLen = document.getElementById(cArr[i]).length;
+      if(selArr[i] == "Date Submitted" && opLen!== 4){
+        console.log(selArr[i]);
+        alert('appending' + i);
+         console.log(cArr[i]);
+       $("#" + cArr[i]).append('<option value="on">On</option>');
+       $("#" + cArr[i]).append('<option value="after">After</option>');
+       $("#" + cArr[i]).append('<option value="before">Before</option>');
+       $("#" + cArr[i]).append('<option value="between">Between</option>');
+       console.log("append on " + cArr[i] + " should have worked");
      }
-     if(getSelVal() == "Team Name" || getSelVal() == "Problem Statement"){
-       $("#comparison").append('<option value="matches">Matches</option>');
-       $("#comparison").append('<option value="contains">Contains</option>');
-       $("#comparison").append('<option value="starts-with">Starts with</option>');
+     else{
+       alert("first select option is not Date Submitted" + i);
+       console.log(selArr[i]);
+       console.log(cArr[i]);
+       // $("#" + cArr[i]).empty();
+       $("#" + cArr[i] + "option[value='on']").remove();
+       $("#" + cArr[i] + "option[value='after']").remove();
+       $("#" + cArr[i] + "option[value='before']").remove();
+       $("#" + cArr[i] + "option[value='between']").remove();
+       console.log("remove on " + cArr[i] + " should have worked");
+     }
+     if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
+       alert('first select option is Team Name or Problem Statement' + i);
+       console.log(cArr[i]);
+       $("#" + cArr[i]).append('<option value="matches">Matches</option>');
+       $("#" + cArr[i]).append('<option value="contains">Contains</option>');
+       $("#" + cArr[i]).append('<option value="starts-with">Starts with</option>');
      } else{
-       $("#comparison option[value='matches']").remove();
-       $("#comparison option[value='contains']").remove();
-       $("#comparison option[value='starts-with']").remove();
+       alert('first select option is not Team Name or Problem Statement' + i);
+       $("#" + cArr[i] + "option[value='matches']").remove();
+       $("#" + cArr[i] + "option[value='contains']").remove();
+       $("#" + cArr[i] + "option[value='starts-with']").remove();
+       // $("#" + cArr[i]).empty();
      }
-     if(getSelVal() == "Status"){
-       $("#comparison").append('<option value="pending">Pending</option>');
-       $("#comparison").append('<option value="accepted">Accepted</option>');
-       $("#comparison").append('<option value="rejected">Rejected</option>');
+      if(selArr[i] == "Status" && opLen!== 3){
+        alert('status ' + i);
+        console.log(cArr[i]);
+       $("#" + cArr[i]).append('<option value="pending">Pending</option>');
+       $("#" + cArr[i]).append('<option value="accepted">Accepted</option>');
+       $("#" + cArr[i]).append('<option value="rejected">Rejected</option>');
      } else{
-       $("#comparison option[value='pending']").remove();
-       $("#comparison option[value='accepted']").remove();
-       $("#comparison option[value='rejected']").remove();
+       alert('not status ' + i);
+       // $("#" + cArr[i]).empty();
+       $("#" + cArr[i] + "option[value='pending']").remove();
+       $("#" + cArr[i] + "option[value='accepted']").remove();
+       $("#" + cArr[i] + "option[value='rejected']").remove();
      }
-     if(getSelVal() == "Size"){
-       $("#comparison").append('<option value="equals">Equals</option>');
-       $("#comparison").append('<option value="greater-than">Greater than</option>');
-       $("#comparison").append('<option value="less-than">Less than</option>');
+    if(selArr[i] == "Size" && opLen!== 3){
+       alert('size ' + i);
+       console.log(cArr[i]);
+       $("#" + cArr[i]).append('<option value="equals">Equals</option>');
+       $("#" + cArr[i]).append('<option value="greater-than">Greater than</option>');
+       $("#" + cArr[i]).append('<option value="less-than">Less than</option>');
      } else{
-       $("#comparison option[value='equals']").remove();
-       $("#comparison option[value='greater-than']").remove();
-       $("#comparison option[value='less-than']").remove();
+       alert('not size' + i);
+       // $("#" + cArr[i]).empty();
+       $("#" + cArr[i] + "option[value='equals']").remove();
+       $("#" + cArr[i] + "option[value='greater-than']").remove();
+       $("#" + cArr[i] + "option[value='less-than']").remove();
      }
+   } //end of first for loop
   }
 
   function filter(){
@@ -151,7 +206,7 @@ function getCompVal(){
 
    //Get the value of the user input
    input = document.getElementById("user-input").value;
-   console.log(input);
+   // console.log(input);
 
    //Count the number of rows in the table
    numRows = table.rows.length - 1;
@@ -161,8 +216,8 @@ function getCompVal(){
     for(i=0; i<numCells; i++){
       // console.log(header[i].innerHTML); //log the text in cell
        //If the selected option matches the header name
-       if(getSelVal() == header[i].textContent){
-
+       if(getSel()[i] == header[i].textContent){
+       alert('getSel matches a header data');
         //numRows - 1 because we're not counting the footer row
          for(j=1; j<=numRows-1; j++){
              tr = table.rows[j];
@@ -172,55 +227,55 @@ function getCompVal(){
 
 
              //Comparison options
-             if(getCompVal() == "equals" || getCompVal() == "matches"){
+             if(getComp() == "equals" || getComp() == "matches" || getComp() == "on"){
                if (td.textContent == input){
                tr.style.display = "";
               } else{
                 tr.style.display = "none";
               }
-            }else if(getCompVal() == "greater-than"){
+            }else if(getComp() == "greater-than"){
               if (td.textContent > input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "less-than"){
+           }else if(getComp() == "less-than"){
               if (td.textContent < input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "Not equal to"){
+           }else if(getComp() == "Not equal to"){
               if (td.textContent !== input) {
               tr.style.display = "";
              } else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "pending"){
+           }else if(getComp() == "pending"){
              if(td.textContent == "Pending"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "accepted"){
+           }else if(getComp() == "accepted"){
              if(td.textContent == "Accepted"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "rejected"){
+           }else if(getComp() == "rejected"){
              if(td.textContent == "Rejected"){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "contains"){
+           }else if(getComp() == "contains"){
              if(td.textContent.includes(input)){
                tr.style.display = "";
              }else{
                tr.style.display = "none";
              }
-           }else if(getCompVal() == "starts-with"){
+           }else if(getComp() == "starts-with"){
              if(td.textContent.startsWith(input[0])){
                tr.style.display = "";
              }else{
@@ -237,6 +292,44 @@ function getCompVal(){
    } //end of first for loop
  } //end of function filter()
 
+
+ function getSel(){
+   var selArr = [];
+   var id, f, selVal;
+   $(".select-class").each(function(n){
+   id = $(this).attr("id").toString();
+   console.log("id is: " + id);
+   // $(".filter-row").each(function(n){
+     // id = $(this).find("select").attr("id");
+     // console.log(id);  get select-filter, select-filter-2, select-filter-3
+     // selVal = $("#" + id + " :selected").val();
+    // $(".select-class").each(function(n){
+     // f = document.getElementById(getId());
+     f = document.getElementById(id);
+     console.log("getElementById is" + f);
+      //Get the option that was selected in the drop-down menu
+     selVal = f.options[f.selectedIndex].value;
+     selArr.push(selVal);
+     console.log("selected value is " +selVal);
+     console.log("n is " + n);
+     return selVal;
+   });
+console.log(selArr);
+ }
+
+ function getComp(){
+   var id, compVal, c;
+   $(".comparison-class").each(function(n){
+     alert("getComp function is running");
+   id = $(this).attr("id");
+   console.log("this is id: " + id);
+   c = document.getElementById(id);
+   console.log("this is element selected: " + c);
+   compVal = c.options[c.selectedIndex].value;
+   console.log(compVal);
+   return compVal;
+ });
+ }
  //Not working
  // function hideInputTextbox(){
  //   if(getCompFilterOp() == "Status"){
@@ -248,14 +341,15 @@ function getCompVal(){
  //   }
  // }
 
- $("#filter").on("click", getModal);
+ $("#filter").on("load", getModal);
  getModal();
-  $("#select-filter").on("change", changeCompFilter);
-  changeCompFilter();
-  $('#submit-filter').on("click", filter);
-  filter();
-  // $('#select-filter').on("change", getSelVal);
-  // getSelVal();
+ // $('#select-filter').on("change", getSel);
+ // getSel();
+  $(".select-class").change(changeCompFilter);
+  // changeCompFilter();
+  // $('#submit-filter').on("click", filter);
+  // filter();
+
   // $('#select-filter').on("change", getCompVal);
   // getCompVal();
   // $("#select-filter").on("change", hideInputTextbox);
