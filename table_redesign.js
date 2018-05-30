@@ -57,7 +57,7 @@ function getCompArr(){
   function changeCompFilter(){
     var selArr = getSelArr();
     var cArr = getCompArr();
-    var i,j,k, size;
+    var i,j,k, size, secondSel;
     var filter = {
       "Date Submitted": ["On", "After", "Before", "Between"],
       "Team Name": ["Matches", "Contains", "Starts with"],
@@ -69,9 +69,10 @@ function getCompArr(){
     var filterArr = Object.keys(filter); //["Date Submitted", "Team Name", "Status", ...]
     var filterArrVal = Object.values(filter);//[["On", "After", ...], ["Matches", "Contains", ...]...]
     size = Object.keys(filter).length;
-    var secondSel = $("#" + cArr[i]);
+
     //loop through the selected values in the first select forms
     for(i = 0; i < selArr.length; i++){
+      secondSel = $("#" + cArr[i]);
       //change of selection on the same select form will empty the comparison select options
       $("#" + cArr[i]).empty();
       //loop through the object
