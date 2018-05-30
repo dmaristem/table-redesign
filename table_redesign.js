@@ -66,21 +66,21 @@ function getCompArr(){
 
       //length of comparison select form (number of option elements)
       opLen = document.getElementById(cArr[i]).length;
-      if(selArr[i] == "Date Submitted" && opLen!== 4){
+      if(selArr[i] == "Date Submitted"){
        $("#" + cArr[i]).append('<option value="on">On</option>');
        $("#" + cArr[i]).append('<option value="after">After</option>');
        $("#" + cArr[i]).append('<option value="before">Before</option>');
        $("#" + cArr[i]).append('<option value="between">Between</option>');
      }
-     else if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
+     else if(selArr[i] == "Team Name" || selArr[i] == "Problem Statement"){
        $("#" + cArr[i]).append('<option value="matches">Matches</option>');
        $("#" + cArr[i]).append('<option value="contains">Contains</option>');
        $("#" + cArr[i]).append('<option value="starts-with">Starts with</option>');
-     } else if(selArr[i] == "Status" && opLen!== 3){
+     } else if(selArr[i] == "Status"){
        $("#" + cArr[i]).append('<option value="pending">Pending</option>');
        $("#" + cArr[i]).append('<option value="accepted">Accepted</option>');
        $("#" + cArr[i]).append('<option value="rejected">Rejected</option>');
-     } else if(selArr[i] == "Size" && opLen!== 3){
+     } else if(selArr[i] == "Size"){
        $("#" + cArr[i]).append('<option value="equals">Equals</option>');
        $("#" + cArr[i]).append('<option value="greater-than">Greater than</option>');
        $("#" + cArr[i]).append('<option value="less-than">Less than</option>');
