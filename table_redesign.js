@@ -39,11 +39,12 @@ function getSelArr(){
     selVal = f.options[f.selectedIndex].value;
     selArr.push(selVal);
 });
+// console.log(selArr);
 return selArr; //outside the each() TO GET JUST ONE FINAL ARRAY
 }
 
-//get id of second select forms
-function getCompArr(){
+//get an array of all the IDs of the second select forms
+function getIdArr(){
   var cid;
   var cArr = [];
   $(".comparison-class").each(function(m){
@@ -53,10 +54,29 @@ function getCompArr(){
   return cArr;
 }
 
+//get selected comparison values array of second select forms
+function getCompArr(){
+  alert('getCompArr is firing');
+  var cId, c, cVal;
+  var cArray = [];
+  $(".comparison-class").each(function(m){
+    cId = $(this).attr("id").toString();
+    c = document.getElementById(cId);
+    cVal = c.options[c.selectedIndex].value;
+    console.log(cVal); //logs
+    cArray.push(cVal);
+    // console.log('whyyy');//this is logged
+    // console.log(cArray);
+  });
+  console.log('wtf man'); //everything outside the each fxn isn't logged
+  console.log("cArray before return: " + cArray);
+  return cArray;
+}
+
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
     var selArr = getSelArr();
-    var cArr = getCompArr();
+    var cArr = getIdArr();
     var i,j,k, size, secondSel;
     var filter = {
       "Date Submitted": ["On", "After", "Before", "Between"],
@@ -91,7 +111,13 @@ function getCompArr(){
   function filter(){
     alert('filter is firing');
     var table, input, firstRow, header, i, j, k, numCells, numRows, tr, td;
-
+    // var compArr = ["On", "After", "Before", "Between", "Matches", "Contains", "Starts with",
+    // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
+    // "Equals", "Greater than", "Less than"];
+    var compVal = getCompArr();
+    alert(console.log(compVal));
+    var selVal = getSelArr();
+    console.log(selVal);
    //Select the table
    table = document.getElementById("team-apps");
 
@@ -99,7 +125,7 @@ function getCompArr(){
    // firstRow = table.getElementsByTagName("tr")[0]; //use next line instead
    firstRow = table.rows[0];
 
-   //Count the number of cells in the first row
+   //Count the number of cells in the first row (length of header row)
    numCells = firstRow.cells.length;
 
    //Select the table header cells
@@ -114,85 +140,91 @@ function getCompArr(){
    numRows = table.rows.length - 1;
    // rows = table.getElementsByTagName('tbody')[0].rows.length;    also works in lieu of previous line
 
-   //Loop through the header cells of the header row
-    for(i=0; i<numCells; i++){
-      // console.log(header[i].innerHTML); //log the text in cell
-
-       //If the selected option matches the header name
-       if(getSel()[i] == header[i].textContent){
+   //loop through the header row
+    for(i=0;i<numCells;i++){
+      //Loop through the selected values of the first selected forms
+       for(j=0; j<selArr.length; j++){
+       //If the selected value matches the header name
+       if(header[i] == selVal[j].textContent){
        alert('getSel matches a header data');
         //numRows - 1 because we're not counting the footer row
-         for(j=1; j<=numRows-1; j++){
+        //go into the specific data cell
+         for(k=1; k<=numRows-1; k++){
              tr = table.rows[j];
 
              //col number stays fixed --> i is fixed
              td = tr.cells[i];
 
+             //loop through the length of the array with selected comparison values
+             for(n=0;n<compVal.length;n++){
+               //Comparison options
+               if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
+                 if (td.textContent == input){
+                 tr.style.display = "";
+                } else{
+                  tr.style.display = "none";
+                }
+              }else if(compVal[n] == "Greater than"){
+                if (td.textContent > input) {
+                tr.style.display = "";
+               } else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Less than"){
+                if (td.textContent < input) {
+                tr.style.display = "";
+               } else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Not equal to"){
+                if (td.textContent !== input) {
+                tr.style.display = "";
+               } else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Pending"){
+               if(td.textContent == "Pending"){
+                 tr.style.display = "";
+               }else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Accepted"){
+               if(td.textContent == "Accepted"){
+                 tr.style.display = "";
+               }else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Rejected"){
+               if(td.textContent == "Rejected"){
+                 tr.style.display = "";
+               }else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Contains"){
+               if(td.textContent.includes(input)){
+                 tr.style.display = "";
+               }else{
+                 tr.style.display = "none";
+               }
+             }else if(compVal[n] == "Starts with"){
+               if(td.textContent.startsWith(input[0])){
+                 tr.style.display = "";
+               }else{
+                 tr.style.display = "none";
+               }
+             }
 
-             //Comparison options
-             if(getComp() == "equals" || getComp() == "matches" || getComp() == "on"){
-               if (td.textContent == input){
-               tr.style.display = "";
-              } else{
-                tr.style.display = "none";
-              }
-            }else if(getComp() == "greater-than"){
-              if (td.textContent > input) {
-              tr.style.display = "";
-             } else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "less-than"){
-              if (td.textContent < input) {
-              tr.style.display = "";
-             } else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "Not equal to"){
-              if (td.textContent !== input) {
-              tr.style.display = "";
-             } else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "pending"){
-             if(td.textContent == "Pending"){
-               tr.style.display = "";
-             }else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "accepted"){
-             if(td.textContent == "Accepted"){
-               tr.style.display = "";
-             }else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "rejected"){
-             if(td.textContent == "Rejected"){
-               tr.style.display = "";
-             }else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "contains"){
-             if(td.textContent.includes(input)){
-               tr.style.display = "";
-             }else{
-               tr.style.display = "none";
-             }
-           }else if(getComp() == "starts-with"){
-             if(td.textContent.startsWith(input[0])){
-               tr.style.display = "";
-             }else{
-               tr.style.display = "none";
-             }
-           }
 
-         }//end of second for loop
+           }//end of fourth for loop
+         } //end of third for loop
 
      } //end of first if statement
        else{
          // alert("no match!");
        }
-   } //end of first for loop
+
+  }//end of second for loop
+ }//end of first for loop
  } //end of function filter()
 
  //Not working
@@ -209,7 +241,7 @@ function getCompArr(){
  $("#filter").on("load", getModal);
  getModal();
   $(".select-class").change(changeCompFilter);
-  // $('#submit-filter').on("click", filter);
-  // filter();
+  // $('#submit-filter').click(filter);
+  $('#submit-filter').click(getCompArr);
 
 });
