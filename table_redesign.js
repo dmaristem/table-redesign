@@ -98,92 +98,52 @@ $(document).ready(function(){
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
-    alert('changeCompFilter firing');
     var selArr = [];
     var cArr = [];
     var i, id, f, cid, selVal, opLen;
-    //get selected value of first select forms
+
+    //get selected value of first select forms --- could be a separate fxn
     $(".select-class").each(function(n){
     id = $(this).attr("id").toString();
       f = document.getElementById(id);
       selVal = f.options[f.selectedIndex].value;
       selArr.push(selVal);
     });
-    console.log("This is the selected array: " + selArr);
 
-    //get id of second select forms
+    //get id of second select forms --- could be a separate fxn
     $(".comparison-class").each(function(m){
       cid = $(this).attr("id").toString();
       cArr.push(cid);
     });
-    console.log("This is the comparison id array: " + cArr);
-
 
 
     for(i = 0; i < selArr.length; i++){
+      //change of selection on the same select form will empty the comparison select options
+      $("#" + cArr[i]).empty();
+
       //length of comparison select form (number of option elements)
       opLen = document.getElementById(cArr[i]).length;
       if(selArr[i] == "Date Submitted" && opLen!== 4){
-        console.log(selArr[i]);
-        alert('appending' + i);
-         console.log(cArr[i]);
        $("#" + cArr[i]).append('<option value="on">On</option>');
        $("#" + cArr[i]).append('<option value="after">After</option>');
        $("#" + cArr[i]).append('<option value="before">Before</option>');
        $("#" + cArr[i]).append('<option value="between">Between</option>');
-       console.log("append on " + cArr[i] + " should have worked");
-     }
-     else{
-       alert("first select option is not Date Submitted" + i);
-       console.log(selArr[i]);
-       console.log(cArr[i]);
-       // $("#" + cArr[i]).empty();
-       $("#" + cArr[i] + "option[value='on']").remove();
-       $("#" + cArr[i] + "option[value='after']").remove();
-       $("#" + cArr[i] + "option[value='before']").remove();
-       $("#" + cArr[i] + "option[value='between']").remove();
-       console.log("remove on " + cArr[i] + " should have worked");
-     }
-     if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
-       alert('first select option is Team Name or Problem Statement' + i);
-       console.log(cArr[i]);
+     } else if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
        $("#" + cArr[i]).append('<option value="matches">Matches</option>');
        $("#" + cArr[i]).append('<option value="contains">Contains</option>');
        $("#" + cArr[i]).append('<option value="starts-with">Starts with</option>');
-     } else{
-       alert('first select option is not Team Name or Problem Statement' + i);
-       $("#" + cArr[i] + "option[value='matches']").remove();
-       $("#" + cArr[i] + "option[value='contains']").remove();
-       $("#" + cArr[i] + "option[value='starts-with']").remove();
-       // $("#" + cArr[i]).empty();
-     }
-      if(selArr[i] == "Status" && opLen!== 3){
-        alert('status ' + i);
-        console.log(cArr[i]);
+     } else if(selArr[i] == "Status" && opLen!== 3){
        $("#" + cArr[i]).append('<option value="pending">Pending</option>');
        $("#" + cArr[i]).append('<option value="accepted">Accepted</option>');
        $("#" + cArr[i]).append('<option value="rejected">Rejected</option>');
-     } else{
-       alert('not status ' + i);
-       // $("#" + cArr[i]).empty();
-       $("#" + cArr[i] + "option[value='pending']").remove();
-       $("#" + cArr[i] + "option[value='accepted']").remove();
-       $("#" + cArr[i] + "option[value='rejected']").remove();
-     }
-    if(selArr[i] == "Size" && opLen!== 3){
-       alert('size ' + i);
+     } else if(selArr[i] == "Size" && opLen!== 3){
+       alert('size. Append  ' + i);
        console.log(cArr[i]);
        $("#" + cArr[i]).append('<option value="equals">Equals</option>');
        $("#" + cArr[i]).append('<option value="greater-than">Greater than</option>');
        $("#" + cArr[i]).append('<option value="less-than">Less than</option>');
-     } else{
-       alert('not size' + i);
-       // $("#" + cArr[i]).empty();
-       $("#" + cArr[i] + "option[value='equals']").remove();
-       $("#" + cArr[i] + "option[value='greater-than']").remove();
-       $("#" + cArr[i] + "option[value='less-than']").remove();
      }
-   } //end of first for loop
+   } //end of for loop
   }
 
   function filter(){
