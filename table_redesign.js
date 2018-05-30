@@ -29,94 +29,37 @@ $(document).ready(function(){
     }
   }
 
-//Get the values of all the select column drop down menus
-// function getSelVal(){
-//   var arr;
-//   arr = $('select.select-class').map(function(){
-//     return this.value;
-//   });
-// }
+//get selected values array of first select forms
+function getSelArr(){
+  var selArr = [];
+  var id, f, selVal;
+  $(".select-class").each(function(n){
+  id = $(this).attr("id").toString();
+    f = document.getElementById(id);
+    selVal = f.options[f.selectedIndex].value;
+    selArr.push(selVal);
+});
+return selArr; //outside the each() TO GET JUST ONE FINAL ARRAY
+}
 
-// function getSelVal(){
-//   var arr = [];
-//    $('.select-class option:selected').each(function(){
-//    return this.value;
-//   });
-// }
-
-//Get the id of the select form
-// function getId(){
-//   var id;
-//   $(".select-class").each(function(n){
-//   id = $(this).attr("id");
-//   return id;
-// });
-// }
-
-//
-// function getCompVal(){
-//   var id, compVal;
-//   $(".filter-row").each(function(m){
-//     id = $(this).find("select")[1].attr("id");
-//     compVal = $("#" + id + " :selected").val();
-//     return compVal;
-//   });
-// }
-
-//use getElementsByClassName to get the value of the selected option in the column drop-down
-// function useClass(){
-//   var c, selected;
-//   c = document.getElementsByClassName("select-class");
-//   console.log(c);
-//   selected = c.options[selected.selectedIndex].value;
-//   return selected;
-// }
-// useClass();
-
-
-//Functioning ones
-  //Get the value of the selected filter column option
-  // function getSel(){
-  //   var f, selectedInp;
-  //   //Select the select drop-down menu
-  //   f = document.getElementById("select-filter");
-  //    //Get the option that was selected in the drop-down menu
-  //   selectedInp = f.options[f.selectedIndex].value;
-  //   return selectedInp;
-  // }
-
-  //Get the value of the comparison filter select option
-  // function getComp(){
-  //   var c, comp;
-  //   c = document.getElementById("comparison");
-  //   comp = c.options[c.selectedIndex].value;
-  //   return comp;
-  // }
-
-
-
+//get id of second select forms
+function getCompArr(){
+  var cid;
+  var cArr = [];
+  $(".comparison-class").each(function(m){
+    cid = $(this).attr("id").toString();
+    cArr.push(cid);
+  });
+  return cArr;
+}
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
-    var selArr = [];
-    var cArr = [];
-    var i, id, f, cid, selVal, opLen;
+    var selArr = getSelArr();
+    var cArr = getCompArr();
+    var i, opLen;
 
-    //get selected value of first select forms --- could be a separate fxn
-    $(".select-class").each(function(n){
-    id = $(this).attr("id").toString();
-      f = document.getElementById(id);
-      selVal = f.options[f.selectedIndex].value;
-      selArr.push(selVal);
-    });
-
-    //get id of second select forms --- could be a separate fxn
-    $(".comparison-class").each(function(m){
-      cid = $(this).attr("id").toString();
-      cArr.push(cid);
-    });
-
-
+    // console.log('selArr Length',getSelArr());
     for(i = 0; i < selArr.length; i++){
       //change of selection on the same select form will empty the comparison select options
       $("#" + cArr[i]).empty();
@@ -128,7 +71,8 @@ $(document).ready(function(){
        $("#" + cArr[i]).append('<option value="after">After</option>');
        $("#" + cArr[i]).append('<option value="before">Before</option>');
        $("#" + cArr[i]).append('<option value="between">Between</option>');
-     } else if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
+     }
+     else if((selArr[i] == "Team Name" && opLen!== 3) || (selArr[i] == "Problem Statement" && opLen!== 3)){
        $("#" + cArr[i]).append('<option value="matches">Matches</option>');
        $("#" + cArr[i]).append('<option value="contains">Contains</option>');
        $("#" + cArr[i]).append('<option value="starts-with">Starts with</option>');
@@ -137,8 +81,6 @@ $(document).ready(function(){
        $("#" + cArr[i]).append('<option value="accepted">Accepted</option>');
        $("#" + cArr[i]).append('<option value="rejected">Rejected</option>');
      } else if(selArr[i] == "Size" && opLen!== 3){
-       alert('size. Append  ' + i);
-       console.log(cArr[i]);
        $("#" + cArr[i]).append('<option value="equals">Equals</option>');
        $("#" + cArr[i]).append('<option value="greater-than">Greater than</option>');
        $("#" + cArr[i]).append('<option value="less-than">Less than</option>');
@@ -175,6 +117,7 @@ $(document).ready(function(){
    //Loop through the header cells of the header row
     for(i=0; i<numCells; i++){
       // console.log(header[i].innerHTML); //log the text in cell
+
        //If the selected option matches the header name
        if(getSel()[i] == header[i].textContent){
        alert('getSel matches a header data');
@@ -252,44 +195,6 @@ $(document).ready(function(){
    } //end of first for loop
  } //end of function filter()
 
-
- function getSel(){
-   var selArr = [];
-   var id, f, selVal;
-   $(".select-class").each(function(n){
-   id = $(this).attr("id").toString();
-   console.log("id is: " + id);
-   // $(".filter-row").each(function(n){
-     // id = $(this).find("select").attr("id");
-     // console.log(id);  get select-filter, select-filter-2, select-filter-3
-     // selVal = $("#" + id + " :selected").val();
-    // $(".select-class").each(function(n){
-     // f = document.getElementById(getId());
-     f = document.getElementById(id);
-     console.log("getElementById is" + f);
-      //Get the option that was selected in the drop-down menu
-     selVal = f.options[f.selectedIndex].value;
-     selArr.push(selVal);
-     console.log("selected value is " +selVal);
-     console.log("n is " + n);
-     return selVal;
-   });
-console.log(selArr);
- }
-
- function getComp(){
-   var id, compVal, c;
-   $(".comparison-class").each(function(n){
-     alert("getComp function is running");
-   id = $(this).attr("id");
-   console.log("this is id: " + id);
-   c = document.getElementById(id);
-   console.log("this is element selected: " + c);
-   compVal = c.options[c.selectedIndex].value;
-   console.log(compVal);
-   return compVal;
- });
- }
  //Not working
  // function hideInputTextbox(){
  //   if(getCompFilterOp() == "Status"){
@@ -303,16 +208,8 @@ console.log(selArr);
 
  $("#filter").on("load", getModal);
  getModal();
- // $('#select-filter').on("change", getSel);
- // getSel();
   $(".select-class").change(changeCompFilter);
-  // changeCompFilter();
   // $('#submit-filter').on("click", filter);
   // filter();
-
-  // $('#select-filter').on("change", getCompVal);
-  // getCompVal();
-  // $("#select-filter").on("change", hideInputTextbox);
-  // hideInputTextbox();
 
 });
