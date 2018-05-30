@@ -57,36 +57,35 @@ function getCompArr(){
   function changeCompFilter(){
     var selArr = getSelArr();
     var cArr = getCompArr();
-    var i, opLen;
-
-    // console.log('selArr Length',getSelArr());
+    var i,j,k, size;
+    var filter = {
+      "Date Submitted": ["On", "After", "Before", "Between"],
+      "Team Name": ["Matches", "Contains", "Starts with"],
+      "Status": ["Pending", "Accepted", "Rejected"],
+      "Cohort": ["Cohort 2017", "Cohort 2018", "Cohort 2019"],
+      "Problem Statement": ["Matches", "Contains", "Starts with"],
+      "Size": ["Equals", "Greater than", "Less than"]
+    }
+    var filterArr = Object.keys(filter); //["Date Submitted", "Team Name", "Status", ...]
+    var filterArrVal = Object.values(filter);//[["On", "After", ...], ["Matches", "Contains", ...]...]
+    size = Object.keys(filter).length;
+    var secondSel = $("#" + cArr[i]);
+    //loop through the selected values in the first select forms
     for(i = 0; i < selArr.length; i++){
       //change of selection on the same select form will empty the comparison select options
       $("#" + cArr[i]).empty();
-
-      //length of comparison select form (number of option elements)
-      opLen = document.getElementById(cArr[i]).length;
-      if(selArr[i] == "Date Submitted"){
-       $("#" + cArr[i]).append('<option value="on">On</option>');
-       $("#" + cArr[i]).append('<option value="after">After</option>');
-       $("#" + cArr[i]).append('<option value="before">Before</option>');
-       $("#" + cArr[i]).append('<option value="between">Between</option>');
+      //loop through the object
+      for(j=0; j<size;j++){
+       if(selArr[i] == filterArr[j] ){
+         for(k=0;k<filterArrVal[j].length;k++){ //filterArrVal[j] gets an array;length of array
+         secondSel.append('<option>' +filterArrVal[j][k] + '</option>'); //[j][k] gets the values of an array in filterArrVal
+         }
+       }else{
+         // console.log("second for loop didn't run");
+        }
      }
-     else if(selArr[i] == "Team Name" || selArr[i] == "Problem Statement"){
-       $("#" + cArr[i]).append('<option value="matches">Matches</option>');
-       $("#" + cArr[i]).append('<option value="contains">Contains</option>');
-       $("#" + cArr[i]).append('<option value="starts-with">Starts with</option>');
-     } else if(selArr[i] == "Status"){
-       $("#" + cArr[i]).append('<option value="pending">Pending</option>');
-       $("#" + cArr[i]).append('<option value="accepted">Accepted</option>');
-       $("#" + cArr[i]).append('<option value="rejected">Rejected</option>');
-     } else if(selArr[i] == "Size"){
-       $("#" + cArr[i]).append('<option value="equals">Equals</option>');
-       $("#" + cArr[i]).append('<option value="greater-than">Greater than</option>');
-       $("#" + cArr[i]).append('<option value="less-than">Less than</option>');
-     }
-   } //end of for loop
-  }
+   }
+ }
 
   function filter(){
     alert('filter is firing');
