@@ -63,15 +63,31 @@ function getCompArr(){
     cId = $(this).attr("id").toString();
     c = document.getElementById(cId);
     cVal = c.options[c.selectedIndex].value;
-    console.log(cVal); //logs
+    // console.log(cVal); //logs
     cArray.push(cVal);
-    // console.log('whyyy');//this is logged
     // console.log(cArray);
   });
-  console.log('wtf man'); //everything outside the each fxn isn't logged
-  console.log("cArray before return: " + cArray);
+  console.log(cArray);
   return cArray;
 }
+
+//get input values in the form of an array (3rd column in filter modal content)
+function getInputArr(){
+  alert("getInputId is firing");
+  var inpId, iVal;
+  var iArray = [];
+  $(".input-class").each(function(p){
+    inpId = $(this).attr("id").toString();
+    // console.log("inpId is: " + inpId);
+    iVal = document.getElementById(inpId).value;
+    // console.log("iVal is: " + iVal);
+    iArray.push(iVal);
+    // console.log(iArray);
+  });
+  console.log(iArray);
+  return iArray;
+}
+
 
 // Dynamically change comparison filter drop-down options based on the selected column filter drop-down option
   function changeCompFilter(){
@@ -95,6 +111,7 @@ function getCompArr(){
       secondSel = $("#" + cArr[i]);
       //change of selection on the same select form will empty the comparison select options
       $("#" + cArr[i]).empty();
+
       //loop through the object
       for(j=0; j<size;j++){
        if(selArr[i] == filterArr[j] ){
@@ -115,9 +132,10 @@ function getCompArr(){
     // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
     // "Equals", "Greater than", "Less than"];
     var compVal = getCompArr();
-    alert(console.log(compVal));
+    console.log("compVal is: " + compVal);
     var selVal = getSelArr();
-    console.log(selVal);
+    console.log("selVal is: " + selVal);
+    var inputArr = getInputArr();
    //Select the table
    table = document.getElementById("team-apps");
 
@@ -143,41 +161,44 @@ function getCompArr(){
    //loop through the header row
     for(i=0;i<numCells;i++){
       //Loop through the selected values of the first selected forms
-       for(j=0; j<selArr.length; j++){
+       for(j=0; j<selVal.length; j++){ //selArr not defined
        //If the selected value matches the header name
-       if(header[i] == selVal[j].textContent){
+       if(header[i].textContent == selVal[j]){
        alert('getSel matches a header data');
         //numRows - 1 because we're not counting the footer row
         //go into the specific data cell
          for(k=1; k<=numRows-1; k++){
-             tr = table.rows[j];
-
-             //col number stays fixed --> i is fixed
-             td = tr.cells[i];
+             tr = table.rows[k];
+             // console.log("tr is: " + tr.textContent);
+             td = tr.cells[i]; //rows of that column
+             // console.log("td is: " + td.textContent);
 
              //loop through the length of the array with selected comparison values
              for(n=0;n<compVal.length;n++){
+               console.log("this is is n: " + n);
                //Comparison options
                if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
-                 if (td.textContent == input){
+                 if (td.textContent == inputArr[n]){
+                   console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
                  tr.style.display = "";
                 } else{
                   tr.style.display = "none";
                 }
               }else if(compVal[n] == "Greater than"){
-                if (td.textContent > input) {
+                console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
+                if (td.textContent > inputArr[n]) {
                 tr.style.display = "";
                } else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Less than"){
-                if (td.textContent < input) {
+                if (td.textContent < inputArr[n]) {
                 tr.style.display = "";
                } else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Not equal to"){
-                if (td.textContent !== input) {
+                if (td.textContent !== inputArr[n]) {
                 tr.style.display = "";
                } else{
                  tr.style.display = "none";
@@ -201,13 +222,15 @@ function getCompArr(){
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Contains"){
-               if(td.textContent.includes(input)){
+               if(td.textContent.includes(inputArr[n])){
                  tr.style.display = "";
                }else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Starts with"){
-               if(td.textContent.startsWith(input[0])){
+               if(td.textContent.startsWith(inputArr[n][0])){
+                 // alert(inputArr[n][0]);
+                 console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
                  tr.style.display = "";
                }else{
                  tr.style.display = "none";
@@ -241,7 +264,8 @@ function getCompArr(){
  $("#filter").on("load", getModal);
  getModal();
   $(".select-class").change(changeCompFilter);
-  // $('#submit-filter').click(filter);
-  $('#submit-filter').click(getCompArr);
+  $('#submit-filter').click(filter);
+  // $('#submit-filter').click(getCompArr);
+  // $('#submit-filter').click(getInputArr);
 
 });
