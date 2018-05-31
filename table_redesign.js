@@ -105,12 +105,13 @@ function getInputArr(){
     var filterArr = Object.keys(filter); //["Date Submitted", "Team Name", "Status", ...]
     var filterArrVal = Object.values(filter);//[["On", "After", ...], ["Matches", "Contains", ...]...]
     size = Object.keys(filter).length;
+    // secondSel = $("#" + cArr[i]);
 
     //loop through the selected values in the first select forms
     for(i = 0; i < selArr.length; i++){
       secondSel = $("#" + cArr[i]);
       //change of selection on the same select form will empty the comparison select options
-      $("#" + cArr[i]).empty();
+      secondSel.empty();
 
       //loop through the object
       for(j=0; j<size;j++){
@@ -127,7 +128,8 @@ function getInputArr(){
 
   function filter(){
     alert('filter is firing');
-    var table, input, firstRow, header, i, j, k, numCells, numRows, tr, td;
+    var table, input, firstRow, header, i, j, k, n, p, numCells, numRows, tr, td;
+    var saveK = [];
     // var compArr = ["On", "After", "Before", "Between", "Matches", "Contains", "Starts with",
     // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
     // "Equals", "Greater than", "Less than"];
@@ -179,15 +181,18 @@ function getInputArr(){
                //Comparison options
                if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
                  if (td.textContent == inputArr[n]){
-                   console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
-                 tr.style.display = "";
+                 // tr.style.display = "";
+                 saveK.push(k);
+                 console.log("saveK is " +saveK);
                 } else{
                   tr.style.display = "none";
                 }
               }else if(compVal[n] == "Greater than"){
                 console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
                 if (td.textContent > inputArr[n]) {
-                tr.style.display = "";
+                // tr.style.display = "";
+                saveK.push(k);
+                 console.log("Greater than - saveK is " +saveK);
                } else{
                  tr.style.display = "none";
                }
@@ -239,12 +244,13 @@ function getInputArr(){
 
 
            }//end of fourth for loop
+           for(p=0; p<saveK.length; p++){
+               tr = table.rows[saveK[p]];
+           tr.style.display = "";
+          }
          } //end of third for loop
 
      } //end of first if statement
-       else{
-         // alert("no match!");
-       }
 
   }//end of second for loop
  }//end of first for loop
