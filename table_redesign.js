@@ -181,130 +181,84 @@ function getInputArr(){
 
          for(k=1; k<=numRows-1; k++){
              tr = table.rows[k];
-             // console.log("tr is: " + tr.textContent);
              td = tr.cells[i]; //rows of that column
-             // console.log("td is: " + td.textContent);
 
              //loop through the length of the array with selected comparison values
-             for(n=0;n<compVal.length;n++){
+             // for(n=0;n<compVal.length;n++){
 
                //Comparison options
-               if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
-                 if (td.textContent == inputArr[n]){
-                 // tr.style.display = "";
-                 saveK.push(k);
-                 // console.log("saveK is " +saveK);
-                } else{
-                  tr.style.display = "none";
-                }
-              }else if(compVal[n] == "Greater than"){
-                // console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
-                if (td.textContent > inputArr[n]) {
-                // tr.style.display = "";
+               if((compVal[j] == "Equals" || compVal[j] == "Matches" || compVal[j] == "On") && (td.textContent == inputArr[j])){
                 saveK.push(k);
-                 // console.log("Greater than - saveK is " +saveK);
-               } else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Less than"){
-                if (td.textContent < inputArr[n]) {
-                // tr.style.display = "";
+              }else if((compVal[j] == "Greater than") && (td.textContent > inputArr[j])){
                 saveK.push(k);
-               } else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Not equal to"){
-                if (td.textContent !== inputArr[n]) {
-                // tr.style.display = "";
+             }else if((compVal[j] == "Less than") &&(td.textContent < inputArr[j])) {
                 saveK.push(k);
-               } else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Pending"){
-               if(td.textContent == "Pending"){
-                 // tr.style.display = "";
+             }else if((compVal[j] == "Not equal to") && (td.textContent !== inputArr[j])){
+                saveK.push(k);
+             }else if((compVal[j] == "Pending") && (td.textContent == "Pending")){
                  saveK.push(k);
-               }else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Accepted"){
-               if(td.textContent == "Accepted"){
-                 // tr.style.display = "";
+             }else if((compVal[j] == "Accepted") && (td.textContent == "Accepted")){
                  saveK.push(k);
-               }else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Rejected"){
-               if(td.textContent == "Rejected"){
-                 // tr.style.display = "";
+             }else if((compVal[j] == "Rejected") && (td.textContent == "Rejected")){
                  saveK.push(k);
-               }else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Contains"){
-               if(td.textContent.includes(inputArr[n])){
-                 // tr.style.display = "";
+             }else if((compVal[j] == "Contains") && (td.textContent.includes(inputArr[j]))){
                  saveK.push(k);
-               }else{
-                 tr.style.display = "none";
-               }
-             }else if(compVal[n] == "Starts with"){
-               if(td.textContent.startsWith(inputArr[n][0])){
+             }else if((compVal[j] == "Starts with") && (td.textContent.startsWith(inputArr[j][0]))){
                  saveK.push(k);
-               }else{
+             }else{
                  tr.style.display = "none";
-               }
              }
 
 
-           }//end of fourth for loop
+           // }
            console.log(saveK);
 
-           //loop through the array that holds the row numbers (k) whose values matched input values
-           // for(f=0;f<saveK.length;f++){
-           //   var replVal = [];
-           //   var gVal = [];
-           //   var kVal = [];
-           //   for(g=f+1;g<saveK.length-1;g++){
-           //
-           //     if(saveK[f] == saveK[g]){
-           //       replVal.push(saveK[g]); //array with all replicated values except the original
-           //       //get the indice of all replicates for one f loop, except the original
-           //       gVal.push(g);
-           //     }
-           //
-           //   }//end of g for loop
-           //
-           //    if(saveK[f] == saveK[g]){
-           //    // gVal.push(f); //don't include this; gVal shouldn't have the index of the original value (that has replicates)
-           //    replVal.push(saveK[f]);
-           //    kVal.push(saveK[f]); //k values for hiding/showing table rows
-           //  }
-           //
-           //   //hide or display rows
-           //   if(replVal.length == getSelArr().length){  // the +1 is an issue; if saveK[f] !== saveK[g] and getSelArr().length = 1,
-           //     //then this if statement would run despite not actually fulfilling the condition; WAIT NO
-           //     //if savek[f] !== saveK[g], then the g for loop would run again, and the if statement would run again
-           //     for(m=0;m<kVal.length;m++){
-           //       tr = table.rows[kVal[m]];
-           //       tr.style.display = "";
-           //       }
-           //     }
-           //
-           //   //gets rid of all the replicates (after the original) in saveK ***********************
-           //   for(h=0;h<gVal.length;h++){
-           //     saveK.splice(gVal[h], 1);
-           //   }
-           //
-           //
-           // } //end of f for loop
+         } //end of k for loop
 
-         } //end of third for loop
+          var kVal = [];
+         //loop through the array that holds the row numbers (k) whose values matched input values
+         for(f=0;f<saveK.length;f++){
+           var replVal = [];
+           var gVal = [];
+           // var kVal = [];
+
+           for(g=f+1;g<saveK.length-1;g++){
+             if(saveK[f] == saveK[g]){
+               replVal.push(saveK[g]); //array with all replicated values except the original
+               //get the indice of all replicates for one f loop, except the original
+               gVal.push(g);
+             }
+
+           }//end of g for loop
+
+            if(saveK[f] == saveK[g]){
+            // gVal.push(f); //don't include this; gVal shouldn't have the index of the original value (that has replicates)
+            replVal.push(saveK[f]);
+            kVal.push(saveK[f]); //k values for hiding/showing table rows
+          }
+
+           //hide or display rows
+           if(replVal.length == getSelArr().length){  // the +1 is an issue; if saveK[f] !== saveK[g] and getSelArr().length = 1,
+             //then this if statement would run despite not actually fulfilling the condition; WAIT NO
+             //if savek[f] !== saveK[g], then the g for loop would run again, and the if statement would run again
+             for(m=0;m<kVal.length;m++){
+               tr = table.rows[kVal[m]];
+               tr.style.display = "";
+               }
+             }
+
+           //gets rid of all the replicates (after the original) in saveK ***********************
+           for(h=0;h<gVal.length;h++){
+             saveK.splice(gVal[h], 1);
+           }
+
+
+         } //end of f for loop
 
      } //end of first if statement
 
-  }//end of second for loop
- }//end of first for loop
+  }//end of j for loop
+}//end of i for loop
  } //end of function filter()
 
  //Not working
