@@ -126,10 +126,16 @@ function getInputArr(){
    }
  }
 
+ function findCopies(){
+
+ }
+
   function filter(){
     alert('filter is firing');
-    var table, input, firstRow, header, i, j, k, n, p, numCells, numRows, tr, td;
+    var table, input, firstRow, header, i, j, k, n, p,f,g, numCells, numRows, tr, td;
     var saveK = [];
+    var kVal = [];
+    var gVal = [];
     // var compArr = ["On", "After", "Before", "Between", "Matches", "Contains", "Starts with",
     // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
     // "Equals", "Greater than", "Less than"];
@@ -177,66 +183,73 @@ function getInputArr(){
 
              //loop through the length of the array with selected comparison values
              for(n=0;n<compVal.length;n++){
-               console.log("this is is n: " + n);
+               // console.log("this is is n: " + n);
                //Comparison options
                if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
                  if (td.textContent == inputArr[n]){
                  // tr.style.display = "";
                  saveK.push(k);
-                 console.log("saveK is " +saveK);
+                 // console.log("saveK is " +saveK);
                 } else{
                   tr.style.display = "none";
                 }
               }else if(compVal[n] == "Greater than"){
-                console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
+                // console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
                 if (td.textContent > inputArr[n]) {
                 // tr.style.display = "";
                 saveK.push(k);
-                 console.log("Greater than - saveK is " +saveK);
+                 // console.log("Greater than - saveK is " +saveK);
                } else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Less than"){
                 if (td.textContent < inputArr[n]) {
-                tr.style.display = "";
+                // tr.style.display = "";
+                saveK.push(k);
                } else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Not equal to"){
                 if (td.textContent !== inputArr[n]) {
-                tr.style.display = "";
+                // tr.style.display = "";
+                saveK.push(k);
                } else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Pending"){
                if(td.textContent == "Pending"){
-                 tr.style.display = "";
+                 // tr.style.display = "";
+                 saveK.push(k);
                }else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Accepted"){
                if(td.textContent == "Accepted"){
-                 tr.style.display = "";
+                 // tr.style.display = "";
+                 saveK.push(k);
                }else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Rejected"){
                if(td.textContent == "Rejected"){
-                 tr.style.display = "";
+                 // tr.style.display = "";
+                 saveK.push(k);
                }else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Contains"){
                if(td.textContent.includes(inputArr[n])){
-                 tr.style.display = "";
+                 // tr.style.display = "";
+                 saveK.push(k);
                }else{
                  tr.style.display = "none";
                }
              }else if(compVal[n] == "Starts with"){
                if(td.textContent.startsWith(inputArr[n][0])){
                  // alert(inputArr[n][0]);
-                 console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
-                 tr.style.display = "";
+                 // console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
+                 // tr.style.display = "";
+                 saveK.push(k);
                }else{
                  tr.style.display = "none";
                }
@@ -244,10 +257,33 @@ function getInputArr(){
 
 
            }//end of fourth for loop
-           for(p=0; p<saveK.length; p++){
-               tr = table.rows[saveK[p]];
-           tr.style.display = "";
-          }
+           console.log(saveK);
+           //loop through the array that holds the row numbers (k) whose values matched input values
+           for(f=0;f<saveK.length;f++){
+
+             for(g=f+1;g<saveK.length-1;g++){
+
+               if(saveK[f] == saveK[g]){
+                 kVal.push(saveK[f]);
+                 gVal.push(g);
+                 if(kVal.length + 1 == getSelArr().length){
+                   tr = table.rows[saveK[f]];
+                   tr.style.display = "";
+                   for(h=0;h<gVal.length;h++){
+                     saveK.splice(saveK[gVal[h]],1);
+                     console.log("saveK spliced: " + saveK);
+                   }
+                 }else{
+                    console.log("there were no duplicates");
+                 }
+               }
+             }
+           }
+           console.log("saveK is: " +saveK);
+           // for(p=0; p<saveK.length; p++){
+           //     tr = table.rows[saveK[p]];
+           // tr.style.display = "";
+          // }
          } //end of third for loop
 
      } //end of first if statement
