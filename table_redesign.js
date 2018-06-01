@@ -67,7 +67,7 @@ function getCompArr(){
     cArray.push(cVal);
     // console.log(cArray);
   });
-  console.log(cArray);
+  // console.log(cArray);
   return cArray;
 }
 
@@ -84,7 +84,7 @@ function getInputArr(){
     iArray.push(iVal);
     // console.log(iArray);
   });
-  console.log(iArray);
+  // console.log(iArray);
   return iArray;
 }
 
@@ -135,7 +135,8 @@ function getInputArr(){
     var table, input, firstRow, header, i, j, k, n, p,f,g, numCells, numRows, tr, td;
     var saveK = [];
     var kVal = [];
-    var gVal = [];
+
+    // var noRepl = [];
     // var compArr = ["On", "After", "Before", "Between", "Matches", "Contains", "Starts with",
     // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
     // "Equals", "Greater than", "Less than"];
@@ -260,30 +261,59 @@ function getInputArr(){
            console.log(saveK);
            //loop through the array that holds the row numbers (k) whose values matched input values
            for(f=0;f<saveK.length;f++){
-
+             var replVal = [];
+             var gVal = [];
              for(g=f+1;g<saveK.length-1;g++){
 
                if(saveK[f] == saveK[g]){
-                 kVal.push(saveK[f]);
+                 replVal.push(saveK[g]);
+                 // kVal.push(saveK[g]);
+
+                 //get the indice of all replicates for one f loop
+                 gVal.push(f);
                  gVal.push(g);
-                 if(kVal.length + 1 == getSelArr().length){
-                   tr = table.rows[saveK[f]];
-                   tr.style.display = "";
-                   for(h=0;h<gVal.length;h++){
-                     saveK.splice(saveK[gVal[h]],1);
-                     console.log("saveK spliced: " + saveK);
-                   }
-                 }else{
-                    console.log("there were no duplicates");
+                 kVal.push(saveK[f]); //k values for hiding/showing table rows
+
+               }
+             }//end of g for loop
+
+             //hide or display rows
+             if(replVal.length + 1 == getSelArr().length){
+               for(m=0;m<kVal.length;m++){
+                 tr = table.rows[kVal[m]];
+                 tr.style.display = "";
                  }
                }
+
+             //gets rid of all the replicates in saveK
+             for(h=0;h<gVal.length;h++){
+               noRepl = saveK.splice(gVal[h], 1);
              }
-           }
-           console.log("saveK is: " +saveK);
+
+             console.log("kVal is: " + kVal);
+             console.log("gVal is: " + gVal);
+
+
+
+             // if(kVal.length + 1 == getSelArr().length){
+             //       tr = table.rows[saveK[f]];
+             //       tr.style.display = "";
+             // }
+
+             //outside of the g loop bc gVal array has to be complete
+             // for(h=0;h<gVal.length;h++){
+             //       saveK.splice(saveK[gVal[h]],1);
+             //       console.log("saveK spliced: " + saveK);
+             // }
+
+           } //end of f for loop
+
+           // console.log("saveK is: " +saveK);
            // for(p=0; p<saveK.length; p++){
            //     tr = table.rows[saveK[p]];
            // tr.style.display = "";
           // }
+
          } //end of third for loop
 
      } //end of first if statement
