@@ -133,7 +133,7 @@ function getInputArr(){
   function filter(){
     alert('filter is firing');
     var table, input, firstRow, header, i, j, k, n, p,f,g, numCells, numRows, tr, td;
-    var saveK = [];
+    var saveK=[];
     // var kVal = [];
 
     // var noRepl = [];
@@ -169,6 +169,7 @@ function getInputArr(){
 
    //loop through the header row
     for(i=0;i<numCells;i++){
+      saveK.push(saveK);
       //Loop through the selected values of the first selected forms
        for(j=0; j<selVal.length; j++){ //selArr not defined
        //If the selected value matches the header name
@@ -185,11 +186,8 @@ function getInputArr(){
              // console.log("td is: " + td.textContent);
 
              //loop through the length of the array with selected comparison values
-             // var saveK = [];
-
              for(n=0;n<compVal.length;n++){
 
-               // console.log("this is is n: " + n);
                //Comparison options
                if(compVal[n] == "Equals" || compVal[n] == "Matches" || compVal[n] == "On"){
                  if (td.textContent == inputArr[n]){
@@ -252,9 +250,6 @@ function getInputArr(){
                }
              }else if(compVal[n] == "Starts with"){
                if(td.textContent.startsWith(inputArr[n][0])){
-                 // alert(inputArr[n][0]);
-                 // console.log("inputArr[n] is: " + inputArr[n] + " n is: " + n);
-                 // tr.style.display = "";
                  saveK.push(k);
                }else{
                  tr.style.display = "none";
@@ -266,59 +261,43 @@ function getInputArr(){
            console.log(saveK);
 
            //loop through the array that holds the row numbers (k) whose values matched input values
-           for(f=0;f<saveK.length;f++){
-             var replVal = [];
-             var gVal = [];
-             var kVal = [];
-             for(g=f+1;g<saveK.length-1;g++){
-
-               if(saveK[f] == saveK[g]){
-                 replVal.push(saveK[g]); //array with all replicated values except the original
-                 //get the indice of all replicates for one f loop, except the original
-                 gVal.push(g);
-               }
-
-             }//end of g for loop
-
-              if(saveK[f] == saveK[g]){
-              // gVal.push(f); //don't include this; gVal shouldn't have the index of the original value (that has replicates)
-              replVal.push(saveK[f]);
-              kVal.push(saveK[f]); //k values for hiding/showing table rows
-            }
-
-             //hide or display rows
-             if(replVal.length == getSelArr().length){  // the +1 is an issue; if saveK[f] !== saveK[g] and getSelArr().length = 1,
-               //then this if statement would run despite not actually fulfilling the condition; WAIT NO
-               //if savek[f] !== saveK[g], then the g for loop would run again, and the if statement would run again
-               for(m=0;m<kVal.length;m++){
-                 tr = table.rows[kVal[m]];
-                 tr.style.display = "";
-                 }
-               }
-
-             //gets rid of all the replicates (after the original) in saveK ***********************
-             for(h=0;h<gVal.length;h++){
-               saveK.splice(gVal[h], 1);
-             }
-
-             // if(kVal.length + 1 == getSelArr().length){
-             //       tr = table.rows[saveK[f]];
-             //       tr.style.display = "";
-             // }
-
-             //outside of the g loop bc gVal array has to be complete
-             // for(h=0;h<gVal.length;h++){
-             //       saveK.splice(saveK[gVal[h]],1);
-             //       console.log("saveK spliced: " + saveK);
-             // }
-
-           } //end of f for loop
-
-           // console.log("saveK is: " +saveK);
-           // for(p=0; p<saveK.length; p++){
-           //     tr = table.rows[saveK[p]];
-           // tr.style.display = "";
-          // }
+           // for(f=0;f<saveK.length;f++){
+           //   var replVal = [];
+           //   var gVal = [];
+           //   var kVal = [];
+           //   for(g=f+1;g<saveK.length-1;g++){
+           //
+           //     if(saveK[f] == saveK[g]){
+           //       replVal.push(saveK[g]); //array with all replicated values except the original
+           //       //get the indice of all replicates for one f loop, except the original
+           //       gVal.push(g);
+           //     }
+           //
+           //   }//end of g for loop
+           //
+           //    if(saveK[f] == saveK[g]){
+           //    // gVal.push(f); //don't include this; gVal shouldn't have the index of the original value (that has replicates)
+           //    replVal.push(saveK[f]);
+           //    kVal.push(saveK[f]); //k values for hiding/showing table rows
+           //  }
+           //
+           //   //hide or display rows
+           //   if(replVal.length == getSelArr().length){  // the +1 is an issue; if saveK[f] !== saveK[g] and getSelArr().length = 1,
+           //     //then this if statement would run despite not actually fulfilling the condition; WAIT NO
+           //     //if savek[f] !== saveK[g], then the g for loop would run again, and the if statement would run again
+           //     for(m=0;m<kVal.length;m++){
+           //       tr = table.rows[kVal[m]];
+           //       tr.style.display = "";
+           //       }
+           //     }
+           //
+           //   //gets rid of all the replicates (after the original) in saveK ***********************
+           //   for(h=0;h<gVal.length;h++){
+           //     saveK.splice(gVal[h], 1);
+           //   }
+           //
+           //
+           // } //end of f for loop
 
          } //end of third for loop
 
