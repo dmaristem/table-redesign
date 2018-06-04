@@ -2,7 +2,7 @@
 #showRows{
   width: 80%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-left: auto;
   margin-right: auto;
 }
@@ -39,7 +39,6 @@ thead{
     /* background: #36304a; */
     /* background: #20365E;  */
     background: #7ECDC0;
-
     text-align: left;
   }
 
@@ -88,7 +87,7 @@ thead{
     width: 40px;
   }
   .col8{
-    width: 90px;
+    width: 130px;
   }
 
   table tbody td{
@@ -102,7 +101,8 @@ thead{
   } */
 
   #team-apps tbody tr{
-    border: 2px solid #F5F5F5;
+    /* border: 2px solid #F5F5F5; */
+    border: 1px solid #aaaaaa;
   }
 
 #team-apps tbody tr:hover{
@@ -122,6 +122,14 @@ thead{
   table tbody .col16:hover{
     color: grey;
   } */
+
+  .filter-btn-wrapper{
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 20px;
+   margin-top: 30px;
+  }
+
   #filter{
     /* position: relative;
     margin-left: auto;
@@ -153,8 +161,12 @@ thead{
   transform: scale(1.5);
   }
 
-  .checkbox:checked{
+  /* input[type='checkbox']:checked{
     background: #7ECDC0;
+  } */
+
+  .color{
+    background: #F5F5F5;
   }
 
   #select-all{
@@ -217,12 +229,12 @@ thead{
      .grid-item{
        /* text-align: center; */
        text-align: left;
-       margin: 5px;
+       margin: 8px;
        /* width: 33%;
        grid-column-start: 1;
        grid-column-end: 3; */
        /* grid-gap: 10px; */
-      /* display: grid; */
+      display: grid;
       /* grid-column-start: 1; */
 
     }

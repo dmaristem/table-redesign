@@ -6,7 +6,9 @@
 
 </head>
 <body>
-  <button id="filter"> Filter Search</button>
+<div class="filter-btn-wrapper">
+   <button id="filter"> Filter Search</button>
+</div>
   <div id="showRows">
     <label id="rPerPg">Rows per page</label>
     <select id="showNumRows">
@@ -20,7 +22,7 @@
 
   <table id="team-apps">
     <thead>
-      <tr class="table-head">
+      <tr id="table-head">
         <th class="col0"><input type="checkbox" class="checkbox"/></th>
         <th class="col1">ID</th>
         <th class="col5">Cohort</th>
@@ -28,8 +30,8 @@
         <th class="col3">Team Name</th>
         <th class="col4">Status</th>
         <th class="col7">Size</th>
-        <th class="col6">Problem Statement</th>
-        <th class="col8">Actions</th>
+        <!-- <th class="col6">Problem Statement</th> -->
+        <th class="col8 header">Actions</th>
       </tr>
     </thead>
     <tbody id="team-apps-body">
@@ -41,7 +43,7 @@
         <td class="col3">Unilever</td>
         <td class="col4">Pending</td>
         <td class="col7">3</td>
-        <td class="col6">More Marketing</td>
+        <!-- <td class="col6">More Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -52,7 +54,7 @@
         <td class="col3">SuperHero Cheesecake</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -63,7 +65,7 @@
         <td class="col3">Ueno</td>
         <td class="col4">Pending</td>
         <td class="col7">3</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -74,7 +76,7 @@
        <td class="col3">Tokyo Liminal Space</td>
        <td class="col4">Pending</td>
        <td class="col7">5</td>
-       <td class="col6">Interior Design</td>
+       <!-- <td class="col6">Interior Design</td> -->
        <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -85,7 +87,7 @@
         <td class="col3">The Greatest Experiment</td>
         <td class="col4">Pending</td>
         <td class="col7">1</td>
-        <td class="col6">Living life well</td>
+        <!-- <td class="col6">Living life well</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -96,7 +98,7 @@
         <td class="col3">Twelve Islands</td>
         <td class="col4">Pending</td>
         <td class="col7">6</td>
-        <td class="col6">Tourism</td>
+        <!-- <td class="col6">Tourism</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -107,7 +109,7 @@
         <td class="col3">Inkspell</td>
         <td class="col4">Rejected</td>
         <td class="col7">2</td>
-        <td class="col6">Publishing for a low cost</td>
+        <!-- <td class="col6">Publishing for a low cost</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -118,7 +120,7 @@
         <td class="col3">Tesla 2.0</td>
         <td class="col4">Pending</td>
         <td class="col7">8</td>
-        <td class="col6">Environmentally friendly flying cars</td>
+        <!-- <td class="col6">Environmentally friendly flying cars</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -129,7 +131,7 @@
         <td class="col3">Unilever</td>
         <td class="col4">Accepted</td>
         <td class="col7">3</td>
-        <td class="col6">More Marketing</td>
+        <!-- <td class="col6">More Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -140,7 +142,7 @@
         <td class="col3">SuperHero Cheesecake</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -151,7 +153,7 @@
         <td class="col3">Ueno</td>
         <td class="col4">Pending</td>
         <td class="col7">3</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -162,7 +164,7 @@
        <td class="col3">Tokyo Liminal Space</td>
        <td class="col4">Pending</td>
        <td class="col7">5</td>
-       <td class="col6">Interior Design</td>
+       <!-- <td class="col6">Interior Design</td> -->
        <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -173,7 +175,7 @@
         <td class="col3">The Greatest Experiment</td>
         <td class="col4">Pending</td>
         <td class="col7">1</td>
-        <td class="col6">Living life well</td>
+        <!-- <td class="col6">Living life well</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -184,7 +186,7 @@
         <td class="col3">Twelve Islands</td>
         <td class="col4">Pending</td>
         <td class="col7">6</td>
-        <td class="col6">Tourism</td>
+        <!-- <td class="col6">Tourism</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -195,7 +197,7 @@
         <td class="col3">Inkspell</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Publishing for a low cost</td>
+        <!-- <td class="col6">Publishing for a low cost</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -206,7 +208,7 @@
         <td class="col3">Tesla 2.0</td>
         <td class="col4">Pending</td>
         <td class="col7">8</td>
-        <td class="col6">Environmentally friendly flying cars</td>
+        <!-- <td class="col6">Environmentally friendly flying cars</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -217,7 +219,7 @@
         <td class="col3">Unilever</td>
         <td class="col4">Pending</td>
         <td class="col7">3</td>
-        <td class="col6">More Marketing</td>
+        <!-- <td class="col6">More Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -228,7 +230,7 @@
         <td class="col3">SuperHero Cheesecake</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -239,7 +241,7 @@
         <td class="col3">Ueno</td>
         <td class="col4">Pending</td>
         <td class="col7">3</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -250,7 +252,7 @@
        <td class="col3">Tokyo Liminal Space</td>
        <td class="col4">Pending</td>
        <td class="col7">5</td>
-       <td class="col6">Interior Design</td>
+       <!-- <td class="col6">Interior Design</td> -->
        <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -261,7 +263,7 @@
         <td class="col3">The Greatest Experiment</td>
         <td class="col4">Pending</td>
         <td class="col7">1</td>
-        <td class="col6">Living life well</td>
+        <!-- <td class="col6">Living life well</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -272,7 +274,7 @@
         <td class="col3">Twelve Islands</td>
         <td class="col4">Pending</td>
         <td class="col7">6</td>
-        <td class="col6">Tourism</td>
+        <!-- <td class="col6">Tourism</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -283,7 +285,7 @@
         <td class="col3">Inkspell</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Publishing for a low cost</td>
+        <!-- <td class="col6">Publishing for a low cost</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -294,7 +296,7 @@
         <td class="col3">Tesla 2.0</td>
         <td class="col4">Pending</td>
         <td class="col7">8</td>
-        <td class="col6">Environmentally friendly flying cars</td>
+        <!-- <td class="col6">Environmentally friendly flying cars</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -305,7 +307,7 @@
         <td class="col3">Unilever</td>
         <td class="col4">Pending</td>
         <td class="col7">11</td>
-        <td class="col6">More Marketing</td>
+        <!-- <td class="col6">More Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -316,7 +318,7 @@
         <td class="col3">SuperHero Cheesecake</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -327,7 +329,7 @@
         <td class="col3">Ueno</td>
         <td class="col4">Pending</td>
         <td class="col7">8</td>
-        <td class="col6">Marketing</td>
+        <!-- <td class="col6">Marketing</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -338,7 +340,7 @@
        <td class="col3">Tokyo Liminal Space</td>
        <td class="col4">Pending</td>
        <td class="col7">5</td>
-       <td class="col6">Interior Design</td>
+       <!-- <td class="col6">Interior Design</td> -->
        <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -349,7 +351,7 @@
         <td class="col3">The Greatest Experiment</td>
         <td class="col4">Pending</td>
         <td class="col7">1</td>
-        <td class="col6">Living life well</td>
+        <!-- <td class="col6">Living life well</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -360,7 +362,7 @@
         <td class="col3">Twelve Islands</td>
         <td class="col4">Pending</td>
         <td class="col7">6</td>
-        <td class="col6">Tourism</td>
+        <!-- <td class="col6">Tourism</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -371,7 +373,7 @@
         <td class="col3">Inkspell</td>
         <td class="col4">Pending</td>
         <td class="col7">2</td>
-        <td class="col6">Publishing for a low cost</td>
+        <!-- <td class="col6">Publishing for a low cost</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
       <tr>
@@ -382,14 +384,14 @@
         <td class="col3">Tesla 2.0</td>
         <td class="col4">Pending</td>
         <td class="col7">8</td>
-        <td class="col6">Environmentally friendly flying cars</td>
+        <!-- <td class="col6">Environmentally friendly flying cars</td> -->
         <td class="col8">Accept/Reject/View</td>
       </tr>
     </tbody>
     <tfoot id="tb-footer">
      <tr>
        <td>
-      <div id="x-results">Showing x of x results</div>
+      <div id="x-results"></div>
       </td>
      </tr>
     </tfoot>
@@ -410,7 +412,7 @@
                     <option id="team-name">Team Name</option>
                     <option id="status">Status</option>
                     <option id="cohort">Cohort</option>
-                    <option id="prob-state">Problem Statement</option>
+                    <!-- <option id="prob-state">Problem Statement</option> -->
                     <option id="team-size">Size</option>
                   </select>
 
@@ -418,7 +420,7 @@
 
                   </select>
 
-                  <input type="text" placholder="Value" id="user-input" class="input-class grid-item">
+                  <input type="text" placeholder="Search" id="user-input" class="input-class grid-item">
               </div>
                <!-- end of first filter-row -->
 
@@ -430,7 +432,7 @@
                   <option>Team Name</option>
                   <option>Status</option>
                   <option>Cohort</option>
-                  <option>Problem Statement</option>
+                  <!-- <option>Problem Statement</option> -->
                   <option>Size</option>
                 </select>
 
@@ -438,7 +440,7 @@
 
                 </select>
 
-               <input type="text" placholder="Value" id="user-input-2" class="input-class grid-item">
+               <input type="text" placeholder="Search" id="user-input-2" class="input-class grid-item">
              </div><!-- end of second filter-row -->
 
             <!-- Third filter set-->

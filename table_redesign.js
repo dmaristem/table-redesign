@@ -1,6 +1,16 @@
 var $ = jQuery;
 $(document).ready(function(){
 
+  //color rows if checkbox is checked
+  function checkRows(){
+    // $('tr').not('thead tr').is(":checked") ? $('tr').addClass("color") :$('tr').removeClass("color");
+    var $tr = $(this).closest("tr").not('thead tr');
+    // var header = document.getElementById('table-head');
+
+    $(this).is(":checked") ? $tr.addClass("color") :$tr.removeClass("color");
+
+  }
+
   //Filter Modal
     function getModal(){
     //Get the modal
@@ -99,7 +109,7 @@ function getInputArr(){
       "Team Name": ["Matches", "Contains", "Starts with"],
       "Status": ["Pending", "Accepted", "Rejected"],
       "Cohort": ["Cohort 2017", "Cohort 2018", "Cohort 2019"],
-      "Problem Statement": ["Matches", "Contains", "Starts with"],
+      // "Problem Statement": ["Matches", "Contains", "Starts with"],
       "Size": ["Equals", "Greater than", "Less than"]
     }
     var filterArr = Object.keys(filter); //["Date Submitted", "Team Name", "Status", ...]
@@ -133,7 +143,7 @@ function filterSearch(){
   var compVal = getCompArr();
   var selVal = getSelArr();
   var inputArr = getInputArr();
-  
+
   //Select the table
   var table = document.getElementById("team-apps");
 
@@ -359,10 +369,31 @@ function filterSearch(){
  //   }
  // }
 
+
+
+function countResults(){
+  alert("countResults is firing");
+  var i, result;
+  //Select the table
+  // var table = document.getElementById("team-apps");
+  //Count the number of rows in the table; -1 bc skipping the header
+  var numVisRows = $('tr:visible').length - 1;
+  //i starts at 1 to not count header row
+  for(i=1; i<numVisRows; i++){
+    result = i;
+  }
+  console.log(result);
+return $('#x-results').text("Showing " + result + " results.");
+}
+
+$('input[type=checkbox]').on('change', checkRows);
  $("#filter").on("load", getModal);
  getModal();
+ $('#x-results').on("load", countResults);
+ countResults();
   $(".select-class").change(changeCompFilter);
   $('#submit-filter').click(filterSearch);
+  $('#submit-filter').click(countResults);
   // $('#submit-filter').click(getCompArr);
   // $('#submit-filter').click(getInputArr);
 
