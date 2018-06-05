@@ -11,7 +11,10 @@
 #showNumRows{
 
 }
-
+#count-checkboxes{
+  font-family: sans-serif;
+  
+}
 #rPerPg{
   font-family: sans-serif;
   margin: 5px;

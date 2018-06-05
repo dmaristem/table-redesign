@@ -11,6 +11,30 @@ $(document).ready(function(){
 
   }
 
+  function checkBoxes(){
+    var result;
+    var header = $("#header-checkbox").is(':checked');
+    var numVisRows = $('tr:visible').length - 1;
+    if(header){
+      //i starts at 1 to not count header row
+      for(i=1; i<numVisRows; i++){
+        $('.checkbox').prop('checked', true);
+      }
+    }else{
+      for(i=1; i<numVisRows; i++){
+        $('.checkbox').prop('checked', false);
+      }
+    }
+  }
+
+  // function countCheckboxes(){
+  //   var $tr = $(this).closest("tr").not("thead tr");
+  //   if($(this).is(':checked')){
+  //     var i += 0;
+  //     $('#count-checkboxes').text("Selected: " + i);
+  //   }
+  // }
+
   //Filter Modal
     function getModal(){
     //Get the modal
@@ -369,7 +393,9 @@ function filterSearch(){
  //   }
  // }
 
-
+function countCheckBoxes(){
+  
+}
 
 function countResults(){
   alert("countResults is firing");
@@ -394,6 +420,7 @@ $('input[type=checkbox]').on('change', checkRows);
   $(".select-class").change(changeCompFilter);
   $('#submit-filter').click(filterSearch);
   $('#submit-filter').click(countResults);
+  $('#header-checkbox').click(checkBoxes);
   // $('#submit-filter').click(getCompArr);
   // $('#submit-filter').click(getInputArr);
 

@@ -4,3 +4,4 @@ before_using_object_for_changeCompFiltOp_function.js
 before_object_changeCompFilter_untouched.js
 debugging_changeCompFilter_afterObject.js
 before_change_filter_mechanism.js
+before_empty_selection_mechanism_implemented.js
