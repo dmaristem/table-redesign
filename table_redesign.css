@@ -1,4 +1,7 @@
 /*this is the div*/
+/* body{
+  background-color: #f5f5f5;
+} */
 #showRows{
   width: 80%;
   display: flex;
@@ -13,7 +16,7 @@
 }
 #count-checkboxes{
   font-family: sans-serif;
-  
+
 }
 #rPerPg{
   font-family: sans-serif;
@@ -26,6 +29,13 @@
  margin-left: auto;
  margin-right: auto;
  border-collapse: collapse;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.12),
+                      0 1px 2px 0 rgba(0,0,0,.24);
+  -moz-box-shadow:    0 1px 3px 0 rgba(0,0,0,.12),
+                      0 1px 2px 0 rgba(0,0,0,.24);
+  box-shadow:         0 1px 3px 0 rgba(0,0,0,.12),
+                      0 1px 2px 0 rgba(0,0,0,.24);
+
 
 }
 /* table thead{
@@ -105,7 +115,10 @@ thead{
 
   #team-apps tbody tr{
     /* border: 2px solid #F5F5F5; */
-    border: 1px solid #aaaaaa;
+    /* border: 1px solid #aaaaaa;  */
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    border-right: 1px solid #aaa;
   }
 
 #team-apps tbody tr:hover{
@@ -248,10 +261,21 @@ thead{
 
     #tb-footer{
       border-top: 3px solid #F5F5F5;
+      -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.12),
+                          0 1px 2px 0 rgba(0,0,0,.24);
+      -moz-box-shadow:    0 1px 3px 0 rgba(0,0,0,.12),
+                          0 1px 2px 0 rgba(0,0,0,.24);
+      box-shadow:         0 1px 3px 0 rgba(0,0,0,.12),
+                          0 1px 2px 0 rgba(0,0,0,.24);
+
       font-family: sans-serif;
 
     }
 
     #tb-footer td{
       height: 60px;
+    }
+
+    #x-results{
+      margin-left: 15px;
     }

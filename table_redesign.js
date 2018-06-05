@@ -11,21 +11,6 @@ $(document).ready(function(){
 
   }
 
-  function checkBoxes(){
-    var result;
-    var header = $("#header-checkbox").is(':checked');
-    var numVisRows = $('tr:visible').length - 1;
-    if(header){
-      //i starts at 1 to not count header row
-      for(i=1; i<numVisRows; i++){
-        $('.checkbox').prop('checked', true);
-      }
-    }else{
-      for(i=1; i<numVisRows; i++){
-        $('.checkbox').prop('checked', false);
-      }
-    }
-  }
 
   // function countCheckboxes(){
   //   var $tr = $(this).closest("tr").not("thead tr");
@@ -160,9 +145,7 @@ function getInputArr(){
    }
  }
 
- // function findCopies(){
- //
- // }
+
 function filterSearch(){
   var compVal = getCompArr();
   var selVal = getSelArr();
@@ -228,7 +211,7 @@ function filterSearch(){
         //else{
         //     tr.style.display = "none";
         // }
-        console.log(saveRow);
+        // console.log(saveRow);
 
 
         }//end of if statement inside k for loop
@@ -243,144 +226,7 @@ function filterSearch(){
 
 }//end of function filterSearch()
 
-//   function filter(){
-//     alert('filter is firing');
-//     var table, input, firstRow, header, i, j, k, n, p,f,g, numCells, numRows, tr, td;
-//     // var saveK=[];
-//     var saveK;
-//     // var kVal = [];
-//
-//     // var noRepl = [];
-//     // var compArr = ["On", "After", "Before", "Between", "Matches", "Contains", "Starts with",
-//     // "Pending", "Accepted", "Rejected", "Cohort 2017", "Cohort 2018", "Cohort 2019",
-//     // "Equals", "Greater than", "Less than"];
-//     var compVal = getCompArr();
-//     console.log("compVal is: " + compVal);
-//     var selVal = getSelArr();
-//     console.log("selVal is: " + selVal);
-//     var inputArr = getInputArr();
-//    //Select the table
-//    table = document.getElementById("team-apps");
-//
-//    //Select the first row of the table
-//    // firstRow = table.getElementsByTagName("tr")[0]; //use next line instead
-//    firstRow = table.rows[0];
-//
-//    //Count the number of cells in the first row (length of header row)
-//    numCells = firstRow.cells.length;
-//
-//    //Select the table header cells
-//    header = firstRow.getElementsByTagName("th");
-//    // header = firstRow;
-//
-//    //Get the value of the user input
-//    input = document.getElementById("user-input").value;
-//    // console.log(input);
-//
-//    //Count the number of rows in the table
-//    numRows = table.rows.length - 1;
-//    // rows = table.getElementsByTagName('tbody')[0].rows.length;    also works in lieu of previous line
-//
-//
-//    //loop through the header row
-//     for(i=0;i<numCells;i++){
-//       // saveK.push(saveK);
-//       //Loop through the selected values of the first selected forms
-//        for(j=0; j<selVal.length; j++){ //selArr not defined
-//        //If the selected value matches the header name
-//        if(header[i].textContent == selVal[j]){
-//        alert('getSel matches a header data');
-//         //numRows - 1 because we're not counting the footer row
-//         //go into the specific data cell
-//
-//          saveK = [];
-//          for(k=1; k<=numRows-1; k++){
-//              tr = table.rows[k];
-//              td = tr.cells[i]; //rows of that column
-//
-//              //loop through the length of the array with selected comparison values
-//              // for(n=0;n<compVal.length;n++){
-//
-//                //Comparison options
-//                if((compVal[j] == "Equals" || compVal[j] == "Matches" || compVal[j] == "On") && (td.textContent == inputArr[j])){
-//                 saveK.push(k);
-//               }else if((compVal[j] == "Greater than") && (td.textContent > inputArr[j])){
-//                 saveK.push(k);
-//              }else if((compVal[j] == "Less than") &&(td.textContent < inputArr[j])) {
-//                 saveK.push(k);
-//              }else if((compVal[j] == "Not equal to") && (td.textContent !== inputArr[j])){
-//                 saveK.push(k);
-//              }else if((compVal[j] == "Pending") && (td.textContent == "Pending")){
-//                  saveK.push(k);
-//              }else if((compVal[j] == "Accepted") && (td.textContent == "Accepted")){
-//                  saveK.push(k);
-//              }else if((compVal[j] == "Rejected") && (td.textContent == "Rejected")){
-//                  saveK.push(k);
-//              }else if((compVal[j] == "Contains") && (td.textContent.includes(inputArr[j]))){
-//                  saveK.push(k);
-//              }else if((compVal[j] == "Starts with") && (td.textContent.startsWith(inputArr[j][0]))){
-//                  saveK.push(k);
-//              }else{
-//                  tr.style.display = "none";
-//              }
-//
-//
-//            // }
-//            console.log(saveK);
-//
-//          } //end of k for loop
-//
-//           var kVal = [];
-//          //loop through the array that holds the row numbers (k) whose values matched input values
-//          for(f=0;f<saveK.length;f++){
-//            var replVal = [];
-//            var gVal = [];
-//            // var kVal = [];
-//
-//            for(g=f+1;g<saveK.length-1;g++){
-//              if(saveK[f] == saveK[g]){
-//                replVal.push(saveK[g]); //array with all replicated values except the original
-//                //get the indice of all replicates for one f loop, except the original
-//                gVal.push(g);
-//              }
-//              if(saveK[f] == saveK[g] && g == saveK.length - 2){
-//                replVal.push(saveK[f]);
-//                kVal.push(saveK[f]); //k values for hiding/showing table rows
-//              }
-//
-//            }//end of g for loop
-//
-//           //   if(saveK[f] == saveK[g]){ //PROBLEM - out of the g for loop
-//           //   // gVal.push(f); //don't include this; gVal shouldn't have the index of the original value (that has replicates)
-//           //   replVal.push(saveK[f]);
-//           //   kVal.push(saveK[f]); //k values for hiding/showing table rows
-//           // }
-//
-//            //hide or display rows
-//            if(replVal.length == selVal().length){  // the +1 is an issue; if saveK[f] !== saveK[g] and getSelArr().length = 1,
-//              //then this if statement would run despite not actually fulfilling the condition; WAIT NO
-//              //if savek[f] !== saveK[g], then the g for loop would run again, and the if statement would run again
-//              for(m=0;m<kVal.length;m++){
-//                tr = table.rows[kVal[m]];
-//                tr.style.display = "";
-//                }
-//              }
-//
-//            //gets rid of all the replicates (after the original) in saveK ***********************
-//            for(h=0;h<gVal.length;h++){
-//              saveK.splice(gVal[h], 1);
-//            }
-//
-//            console.log("saveK spliced is: " + saveK);
-//
-//
-//          } //end of f for loop
-//
-//      } //end of first if statement
-//
-//   }//end of j for loop
-// }//end of i for loop
-//  } //end of function filter()
+
 
  //Not working
  // function hideInputTextbox(){
@@ -393,12 +239,80 @@ function filterSearch(){
  //   }
  // }
 
-function countCheckBoxes(){
-  
+function countChecks(){
+  alert('countChecks is running');
+  var table = document.getElementById("team-apps");
+  //Select the first column of the table
+  var checkBoxCol = table.rows[0];
+  //Count the number of rows in the table
+  var numRows = table.rows.length - 1;
+  var i;
+  var j = [];
+  //Loop through the rows of the first column
+  for(i=1; i<numRows; i++){
+    // if($(checkBoxCol.cells[i]).is(':checked')){
+    if($('.checkbox').prop("checked")){
+        j.push(1);
+    }
+  }
+  console.log(j);
+  return $('#count-checkboxes').text("Selected: " + j.length);
+
+}
+
+//selecting and deselecting all checkboxes
+ function checkBoxes(){
+   var result;
+   var header = $("#header-checkbox").is(':checked');
+   var numVisRows = $('tr:visible').length - 1;
+   if(header){
+     //i starts at 1 to not count header row
+     for(i=1; i<numVisRows; i++){
+       $('.checkbox').prop('checked', true);
+     }
+   }else{
+     for(i=1; i<numVisRows; i++){
+       $('.checkbox').prop('checked', false);
+     }
+   }
+ }
+
+// function countSelChecks(){
+//   alert('countSelChecks is running!');
+//   var i;
+//   var numChecked = 0;
+//   var numVisRows = $('tr:visible').length - 1;
+//   // var checkBox = document.getElementById('')
+//   for(i=1; i<numVisRows; i++){
+//     if($('.checkbox').prop("checked")){
+//       // alert('if statement is running');
+//       numChecked++;
+//     }
+//   //   // else{
+//   //   //   numChecked--;
+//   //   // }
+//    }
+//    return $('#count-checkboxes').text("Selected: " + numChecked);
+// }
+
+//WORKING - count the number of checked boxes
+function countSelChecks(){
+  alert('countSelChecks is running!');
+  var i;
+  var numVisRows = $('tr:visible').length - 1;
+  var numChecked = $("input.checkbox:checked").length;
+  var header = $("#header-checkbox").is(':checked');
+   if(header){
+     numChecked = $("input.checkbox:checked").length-1; 
+   }
+    // if($('.checkbox').prop("checked")){
+    //
+    // }
+   return $('#count-checkboxes').text("Selected: " + numChecked);
 }
 
 function countResults(){
-  alert("countResults is firing");
+  // alert("countResults is firing");
   var i, result;
   //Select the table
   // var table = document.getElementById("team-apps");
@@ -421,7 +335,18 @@ $('input[type=checkbox]').on('change', checkRows);
   $('#submit-filter').click(filterSearch);
   $('#submit-filter').click(countResults);
   $('#header-checkbox').click(checkBoxes);
-  // $('#submit-filter').click(getCompArr);
-  // $('#submit-filter').click(getInputArr);
+  $('.checkbox').change(countSelChecks);
+
+// $('.checkbox').change(countChecks);
+  // $(".checkbox").change(function(){
+  //   var numChecked = 0;
+  //
+  //   if(this.checked){
+  //     numChecked ++;
+  //   }
+  //    return $('#count-checkboxes').text("Selected: " + numChecked);
+  // });
+
+
 
 });
